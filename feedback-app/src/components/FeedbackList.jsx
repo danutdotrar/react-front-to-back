@@ -5,11 +5,11 @@ const FeedbackList = ({ feedback }) => {
         return <p>No feedback yet</p>;
     } else {
         return (
-            <>
+            <div className="feedback-list">
                 {feedback.map((item) => (
                     <FeedbackItem item={item} key={item.id} />
                 ))}
-            </>
+            </div>
         );
     }
 };
