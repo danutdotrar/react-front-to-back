@@ -8,7 +8,10 @@ const App = () => {
     const [feedback, setFeedback] = useState(FeedbackData);
 
     const deleteFeedback = (id) => {
-        console.log(id);
+        if (window.confirm("Are you sure you want to delete?")) {
+            // return an array minus the one we are deleting
+            setFeedback(feedback.filter((item) => item.id !== id));
+        }
     };
     return (
         <>
