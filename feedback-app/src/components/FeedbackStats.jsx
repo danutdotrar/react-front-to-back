@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const FeedbackStats = ({ feedback }) => {
     // const calcAverage = (arr) => {
     //     const arrayOfRatings = arr.map((item) => item.rating);
@@ -10,7 +12,7 @@ const FeedbackStats = ({ feedback }) => {
     let average =
         feedback.reduce((acc, val) => acc + val.rating, 0) / feedback.length;
 
-    average = average.toFixed(1);
+    average = average.toFixed(1).replace(/[.,]0$/, "");
 
     return (
         <>
@@ -20,6 +22,10 @@ const FeedbackStats = ({ feedback }) => {
             </div>
         </>
     );
+};
+
+FeedbackStats.propTypes = {
+    feedback: PropTypes.array.isRequired,
 };
 
 export default FeedbackStats;
