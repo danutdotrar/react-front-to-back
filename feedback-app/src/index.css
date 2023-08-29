@@ -32,6 +32,15 @@ header {
     margin-bottom: 30px;
 }
 
+.link-h3 {
+    text-decoration: none;
+    color: #ff6a95;
+}
+
+.link-h3:active {
+    color: #fff;
+}
+
 .card {
     background-color: #fff;
     color: #333;
