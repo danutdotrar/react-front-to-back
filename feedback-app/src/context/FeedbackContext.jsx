@@ -1,17 +1,25 @@
-import { createContext, useState } from "react";
-
-import { v4 as uuidv4 } from "uuid";
+import { createContext, useState, useEffect } from "react";
 
 // Create context
 const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
-    const [feedback, setFeedback] = useState([
-        { id: 1, text: "This item 1 is from context", rating: 10 },
-        { id: 2, text: "This item 2 is from context", rating: 6 },
-        { id: 3, text: "This item 3 is from context", rating: 8 },
-    ]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [feedback, setFeedback] = useState([]);
     const [feedbackEdit, setFeedbackEdit] = useState({ item: {}, edit: false });
+
+    useEffect(() => {
+        fetchFeedback();
+    }, []);
+
+    const fetchFeedback = async () => {
+        const response = await fetch(`/feedback`);
+
+        const data = await response.json();
+
+        setFeedback(data);
+        setIsLoading(false);
+    };
 
     const deleteFeedback = (id) => {
         if (window.confirm("Are you sure you want to delete?")) {
@@ -20,10 +28,17 @@ export const FeedbackProvider = ({ children }) => {
         }
     };
 
-    const addFeedback = (newFeedback) => {
-        newFeedback.id = uuidv4();
+    const addFeedback = async (newFeedback) => {
+        const response = await fetch(`/feedback`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newFeedback),
+        });
+
+        const data = await response.json();
+
         // set feedback to an array of the current feedback and the rest of the feedback array
-        setFeedback([newFeedback, ...feedback]);
+        setFeedback([data, ...feedback]);
     };
 
     // Set item to be updated
@@ -48,6 +63,7 @@ export const FeedbackProvider = ({ children }) => {
                 editFeedback,
                 feedbackEdit,
                 updateFeedback,
+                isLoading,
             }}
         >
             {children}
