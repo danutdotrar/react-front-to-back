@@ -1,7 +1,13 @@
 import React from "react";
 
 const Footer = () => {
-    return <div>Footer</div>;
+    const footerYear = new Date().getFullYear();
+
+    return (
+        <footer className="footer p-10 bg-gray-700 text-primary-content footer-center">
+            &copy; {footerYear}
+        </footer>
+    );
 };
 
 export default Footer;
