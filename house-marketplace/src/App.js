@@ -34,6 +34,6 @@ const App = () => {
     );
 };
 
-NEXT 14. 9 - Forgot Password Page
-
 export default App;
+
+NEXT 14 - 10. Google OAuth
