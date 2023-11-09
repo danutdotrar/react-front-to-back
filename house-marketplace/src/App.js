@@ -35,5 +35,3 @@ const App = () => {
 };
 
 export default App;
-
-NEXT 14 - 10. Google OAuth
