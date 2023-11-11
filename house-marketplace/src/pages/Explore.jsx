@@ -11,7 +11,7 @@ const Explore = () => {
             </header>
 
             <main>
-                {/* {slider} */}
+                {/* slider */}
 
                 <p className="exploreCategoryHeading">Categories</p>
                 <div className="exploreCategories">
