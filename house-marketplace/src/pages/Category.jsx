@@ -73,7 +73,7 @@ const Category = () => {
                     <main>
                         <ul className="categoryListings">
                             {listings.map((listing) => (
-                                <h3>{listing.data.name}</h3>
+                                <ListingItem listing={listing.data} />
                             ))}
                         </ul>
                     </main>
