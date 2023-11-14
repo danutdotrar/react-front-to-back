@@ -39,4 +39,6 @@ const App = () => {
     );
 };
 
+const NEXT = "15 / 5";
+
 export default App;
