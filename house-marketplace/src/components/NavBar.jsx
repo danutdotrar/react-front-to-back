@@ -56,7 +56,7 @@ const NavBar = () => {
                                     : "navbarListItemName"
                             )}
                         >
-                            Offer
+                            Offers
                         </p>
                     </li>
                     <li
