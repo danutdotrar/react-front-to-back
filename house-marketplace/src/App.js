@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp";
 import NavBar from "./components/NavBar";
 import PrivateRoute from "./components/PrivateRoute";
 import Category from "./pages/Category";
+import CreateListing from "./pages/CreateListing";
 
 const App = () => {
     return (
@@ -31,6 +32,7 @@ const App = () => {
                         path="/forgot-password"
                         element={<ForgotPassword />}
                     />
+                    <Route path="/create-listing" element={<CreateListing />} />
                 </Routes>
                 <NavBar />
             </Router>
@@ -38,7 +40,5 @@ const App = () => {
         </>
     );
 };
-
-const NEXT = "15 / 5";
 
 export default App;
