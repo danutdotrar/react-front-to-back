@@ -22,7 +22,7 @@ function CreateListing() {
         longitude: 0,
     });
 
-    // Destructure from formdata
+    // Destructure from formData
     const {
         type,
         name,
@@ -61,8 +61,36 @@ function CreateListing() {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        console.log(formData);
     };
-    const onMutate = (e) => {};
+    const onMutate = (e) => {
+        let boolean = null;
+
+        if (e.target.value === "true") {
+            boolean = true;
+        }
+
+        if (e.target.value === "false") {
+            boolean = false;
+        }
+
+        // Files
+        if (e.target.files) {
+            // take the previous state and update only the images
+            setFormData((prevState) => ({
+                ...prevState,
+                images: e.target.files,
+            }));
+        }
+        // Text/Booleans/Numbers
+        if (!e.target.files) {
+            // take the previous state and return an object containing previous state and the property that we want to update
+            setFormData((prevState) => ({
+                ...prevState,
+                [e.target.id]: boolean ?? e.target.value,
+            }));
+        }
+    };
 
     if (loading) {
         return (
@@ -71,6 +99,7 @@ function CreateListing() {
             </>
         );
     }
+
     return (
         <div className="profile">
             <header>
@@ -101,7 +130,7 @@ function CreateListing() {
                                     : "formButton"
                             }
                             id="type"
-                            value="rebt"
+                            value="rent"
                             onClick={onMutate}
                         >
                             Rent
