@@ -3,6 +3,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "../components/Spinner";
 
+CHECK CREATING LISTING FORM PART!!!
 function CreateListing() {
     const [geoLocationEnabled, setGeoLocationEnabled] = useState(true);
     const [loading, setLoading] = useState(false);
