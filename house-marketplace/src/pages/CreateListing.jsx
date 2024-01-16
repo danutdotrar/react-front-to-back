@@ -1,9 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {
+    getStorage,
+    ref,
+    uploadBytesResumable,
+    getDownloadURL,
+} from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "../components/Spinner";
 
-CHECK CREATING LISTING FORM PART!!!
 function CreateListing() {
     const [geoLocationEnabled, setGeoLocationEnabled] = useState(true);
     const [loading, setLoading] = useState(false);
