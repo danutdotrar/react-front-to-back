@@ -68,7 +68,7 @@ function CreateListing() {
         };
     }, [isMounted]);
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
 
         setLoading(true);
@@ -132,6 +132,16 @@ function CreateListing() {
             });
         };
 
+        const imgUrls = await Promise.all(
+            [...images].map((image) => storeImage(image))
+        ).catch((error) => {
+            setLoading(false);
+            toast.error("Images not uploaded");
+            console.log(error);
+            return;
+        });
+
+        console.log(imgUrls);
         setLoading(false);
     };
 
