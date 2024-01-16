@@ -9,6 +9,7 @@ import {
 import { db } from "../firebase.config";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Spinner } from "../components/Spinner";
 
 function CreateListing() {
@@ -69,8 +70,24 @@ function CreateListing() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+
+        setLoading(true);
+
+        if (+discountedPrice >= +regularPrice) {
+            setLoading(false);
+            toast.error("Discounted price needs to be less than regular price");
+            return;
+        }
+
+        if (images.length > 6) {
+            setLoading(false);
+            toast.error("Max 6 images");
+            return;
+        }
+
+        setLoading(false);
     };
+
     const onMutate = (e) => {
         let boolean = null;
 
