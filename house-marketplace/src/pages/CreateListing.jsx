@@ -6,6 +6,8 @@ import {
     uploadBytesResumable,
     getDownloadURL,
 } from "firebase/storage";
+import { db } from "../firebase.config";
+import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "../components/Spinner";
 
