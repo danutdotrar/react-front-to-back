@@ -63,5 +63,5 @@ const Listings = () => {
         </main>
     );
 };
-
+NEXT; // 16. 2. NEXT PART
 export default Listings;
