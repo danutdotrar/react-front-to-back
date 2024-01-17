@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase.config";
-import Spinner from "../components/Spinner";
+import { Spinner } from "../components/Spinner";
 import shareIcon from "../assets/svg/shareIcon.svg";
 
 const Listings = () => {
@@ -27,9 +27,41 @@ const Listings = () => {
         };
 
         fetchListing();
-    }, []);
+    }, [navigate, params.listingId]);
 
-    return <div>Listings</div>;
+    if (loading) {
+        return <Spinner />;
+    }
+
+    return (
+        <main>
+            {/* SLIDER  */}
+
+            <div
+                className="shareIconDiv"
+                onClick={() => {
+                    navigator.clipboard.writeText(window.location.href);
+                    setTimeout(() => {
+                        setShareLinkCopied(false);
+                    }, 2000);
+                }}
+            >
+                <img src={shareIcon} alt="" />
+            </div>
+
+            {shareLinkCopied && <p className="linkCopied">Link copied!</p>}
+
+            <div className="listingDetails">
+                <p className="listingName">
+                    {listing.name} -{" "}
+                    {listing.offer
+                        ? listing.discountedPrice
+                        : listing.regularPrice}
+                    $
+                </p>
+            </div>
+        </main>
+    );
 };
 
 export default Listings;
