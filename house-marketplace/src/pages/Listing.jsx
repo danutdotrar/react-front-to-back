@@ -41,6 +41,7 @@ const Listings = () => {
                 className="shareIconDiv"
                 onClick={() => {
                     navigator.clipboard.writeText(window.location.href);
+                    setShareLinkCopied(true);
                     setTimeout(() => {
                         setShareLinkCopied(false);
                     }, 2000);
@@ -59,9 +60,40 @@ const Listings = () => {
                         : listing.regularPrice}
                     $
                 </p>
+                <p className="listingType">
+                    For {listing.type === "rent" ? "rent" : "sale"}
+                </p>
+                {listing.offer && (
+                    <p className="discountPrice">
+                        ${listing.regularPrice - listing.discountedPrice}
+                    </p>
+                )}
+                <ul className="listingDetailsList">
+                    <li>
+                        {listing.bedroom > 1
+                            ? `${listing.bedrooms}`
+                            : "1 Bedroom"}
+                    </li>
+                    <li>
+                        {listing.bathrooms > 1
+                            ? `${listing.bathrooms}`
+                            : "1 Bathroom"}
+                    </li>
+                    <li>{listing.parking && "Parking spot"}</li>
+                    <li>{listing.furnished && "Furnished"}</li>
+                </ul>
+
+                {auth.currentUser?.uid !== listing.userRef && (
+                    <Link
+                        to={`/contact/${listing.userRef}?listingName=${listing.name}&listingLocation=${listing.location}`}
+                        className="primaryButton"
+                    >
+                        Contact Landlord
+                    </Link>
+                )}
             </div>
         </main>
     );
 };
-NEXT; // 16. 2. NEXT PART
+
 export default Listings;
